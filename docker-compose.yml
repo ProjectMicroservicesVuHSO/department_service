@@ -1,0 +1,19 @@
+services:
+  department-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_8_0_30:3306/microservices?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      - SPRING_DATASOURCE_USERNAME=vuhso04
+      - SPRING_DATASOURCE_PASSWORD=123abc
+      - SPRING_APPLICATION_NAME=department-service
+    networks:
+      - vuhso-microservices
+networks:
+    vuhso-microservices:
+        external: true
